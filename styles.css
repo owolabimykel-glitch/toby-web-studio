@@ -20,20 +20,60 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--bg);
+  background-color: #05070d;
   color: var(--text);
   font-family: Arial, sans-serif;
   line-height: 1.6;
+}
+
+body::before {
+  background:
+    radial-gradient(circle at 42% 22%, rgba(255, 255, 255, 0.06), transparent 28%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.34));
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+  z-index: 1;
 }
 
 a {
   color: inherit;
 }
 
+.site-background-video {
+  filter: brightness(1) contrast(1.12) saturate(0.95);
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: fixed;
+  width: 100%;
+  z-index: 0;
+}
+
+.site-background-overlay {
+  background:
+    radial-gradient(circle at 50% 38%, rgba(4, 11, 22, 0.02), rgba(0, 0, 0, 0.2) 68%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.34), rgba(3, 8, 16, 0.08) 48%, rgba(0, 0, 0, 0.34));
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+  z-index: 1;
+}
+
+main,
+.hero,
+.site-nav,
+footer {
+  position: relative;
+  z-index: 2;
+}
+
 .site-nav {
   align-items: center;
   animation: navDrop 700ms ease-out both;
-  background-color: rgba(17, 24, 39, 0.96);
+  background-color: rgba(5, 7, 13, 0.42);
+  backdrop-filter: blur(8px);
   color: white;
   display: flex;
   justify-content: space-between;
@@ -67,7 +107,7 @@ a {
 
 .hero {
   align-items: center;
-  background-color: #0b1220;
+  background-color: transparent;
   color: white;
   display: flex;
   isolation: isolate;
@@ -88,7 +128,7 @@ a {
 }
 
 .hero-video {
-  filter: brightness(0.26) contrast(1.65) saturate(0.55);
+  filter: brightness(0.58) contrast(1.35) saturate(0.72);
   height: 100%;
   inset: 0;
   object-fit: cover;
@@ -127,22 +167,13 @@ a {
 }
 
 .hero::before {
-  animation: cloudDrift 20s ease-in-out infinite;
-  background:
-    radial-gradient(ellipse at 16% 58%, rgba(255, 255, 255, 0.46), transparent 31%),
-    radial-gradient(ellipse at 48% 50%, rgba(255, 255, 255, 0.3), transparent 34%),
-    radial-gradient(ellipse at 82% 42%, rgba(255, 255, 255, 0.28), transparent 29%),
-    radial-gradient(ellipse at 64% 72%, rgba(255, 255, 255, 0.2), transparent 30%);
-  filter: blur(28px);
-  inset: -22%;
-  opacity: 0.36;
-  will-change: opacity, transform;
+  display: none;
 }
 
 .hero::after {
   background:
-    radial-gradient(circle at 45% 44%, rgba(12, 21, 34, 0.08), rgba(0, 0, 0, 0.6) 62%, rgba(0, 0, 0, 0.9) 100%),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(3, 8, 16, 0.44) 48%, rgba(0, 0, 0, 0.72));
+    radial-gradient(circle at 45% 44%, rgba(12, 21, 34, 0.02), rgba(0, 0, 0, 0.18) 62%, rgba(0, 0, 0, 0.42) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.36), rgba(3, 8, 16, 0.08) 48%, rgba(0, 0, 0, 0.32));
   inset: 0;
   opacity: 1;
 }
@@ -150,6 +181,7 @@ a {
 .hero-content {
   max-width: 760px;
   position: relative;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.72);
   z-index: 2;
 }
 
@@ -210,15 +242,19 @@ a {
 }
 
 .section {
+  background-color: transparent;
   padding: 76px 8%;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.62);
 }
 
 .muted-section {
-  background-color: #e9f0f7;
+  background-color: transparent;
+  backdrop-filter: none;
 }
 
 .offer-section {
-  background-color: var(--ink);
+  background-color: transparent;
+  backdrop-filter: none;
   color: white;
 }
 
@@ -228,14 +264,14 @@ a {
 }
 
 .section h2 {
-  color: var(--ink);
+  color: #ffffff;
   font-size: 34px;
   line-height: 1.2;
   margin: 0 0 18px;
 }
 
 .section p {
-  color: var(--muted);
+  color: #d1d5db;
   font-size: 18px;
 }
 
@@ -251,8 +287,9 @@ a {
 .about-layout img {
   aspect-ratio: 4 / 3;
   border-radius: 8px;
-  box-shadow: 0 18px 45px rgba(17, 24, 39, 0.14);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.38);
   object-fit: cover;
+  opacity: 0.88;
   width: 100%;
 }
 
@@ -266,8 +303,9 @@ a {
 
 .service-card,
 .project-card {
-  background-color: var(--panel);
-  border: 1px solid var(--border);
+  background-color: rgba(5, 8, 15, 0.38);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 8px;
   padding: 24px;
   transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
@@ -275,14 +313,14 @@ a {
 
 .service-card:hover,
 .project-card:hover {
-  border-color: rgba(37, 99, 235, 0.35);
-  box-shadow: 0 16px 34px rgba(17, 24, 39, 0.1);
+  border-color: rgba(245, 158, 11, 0.48);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
   transform: translateY(-5px);
 }
 
 .service-card h3,
 .project-card h3 {
-  color: var(--ink);
+  color: #ffffff;
   font-size: 23px;
   line-height: 1.2;
   margin: 0 0 12px;
@@ -307,8 +345,9 @@ a {
 }
 
 .offer-list {
-  background-color: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background-color: rgba(5, 8, 15, 0.34);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 8px;
   list-style: none;
   margin: 0;
@@ -333,14 +372,14 @@ a {
 }
 
 .project-number {
-  color: var(--teal);
+  color: var(--gold);
   font-size: 14px;
   font-weight: 800;
   margin: 0 0 18px;
 }
 
 .project-card a {
-  color: var(--blue);
+  color: var(--gold);
   font-weight: 800;
   margin-top: auto;
   padding-top: 22px;
@@ -348,26 +387,29 @@ a {
 }
 
 .project-card a:hover {
-  color: var(--teal);
+  color: #ffffff;
 }
 
 .contact-section {
-  background-color: #172033;
+  background-color: transparent;
+  backdrop-filter: none;
 }
 
 .contact-card {
-  background-color: white;
+  background-color: rgba(5, 8, 15, 0.38);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 8px;
   padding: 28px;
 }
 
 .contact-card p {
-  color: var(--muted);
+  color: #d1d5db;
   margin: 0 0 10px;
 }
 
 .contact-card a {
-  color: var(--blue);
+  color: #ffffff;
   display: inline-block;
   font-size: 20px;
   font-weight: 800;
@@ -401,7 +443,8 @@ button:hover {
 }
 
 footer {
-  background-color: #0b1220;
+  background-color: rgba(5, 7, 13, 0.34);
+  backdrop-filter: blur(5px);
   color: #d1d5db;
   padding: 22px 8%;
   text-align: center;
